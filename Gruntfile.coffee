@@ -1,5 +1,3 @@
-###global module:false###
-
 module.exports = (grunt) ->
   grunt.initConfig
 
@@ -11,17 +9,16 @@ module.exports = (grunt) ->
     coffee:
       main:
         expand: true,
-        flatten: false,
         cwd: 'src',
-        src: ['*.coffee'],
+        src: ['**/*.coffee'],
         dest: '.',
         ext: '.js'
 
   grunt.loadNpmTasks "grunt-contrib-coffee"
-  grunt.loadNpmTasks "grunt-contrib-copy"
+  grunt.loadNpmTasks "grunt-contrib-clean"
 
   grunt.registerTask "default", ["build"]
   grunt.registerTask "build", [
     "clean"
-    # "coffee:main"
+    "coffee:main"
   ]

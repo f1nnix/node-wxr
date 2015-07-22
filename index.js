@@ -1,1 +1,4 @@
-module.exports = require('./build/src/index.js')
+(function() {
+  module.exports = require("./lib/importer");
+
+}).call(this);

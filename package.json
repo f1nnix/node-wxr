@@ -13,12 +13,11 @@
   "author": "Ilya Rusanen",
   "license": "MIT",
   "dependencies": {
-    "bluebird": "^2.9.34",
     "xmlbuilder": "^2.6.4"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
-    "grunt-contrib-coffee": "^0.13.0",
-    "grunt-contrib-copy": "^0.8.0"
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-coffee": "^0.13.0"
   }
 }
