@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@git.rusanen.co.uk:f1nn/node-wxr.git"
+    "url": "https://github.com/f1nnix/node-wxr"
   },
   "author": "Ilya Rusanen",
   "license": "MIT",
