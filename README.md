@@ -5,13 +5,13 @@
 ![Docman GitHub stars](https://img.shields.io/github/stars/f1nnix/wxr.svg)
 ![Docman GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)
 
-XML (WXR) file generator for official [Wordpress Import Plugin](https://wordpress.org/plugins/wordpress-importer/). Add categories and posts in clean readable way, and then serrialize it into Wordpress Import XML file.
+XML (WXR) file generator for official [Wordpress Import Plugin](https://wordpress.org/plugins/wordpress-importer/). Add categories and posts in clean readable way, and then serialize it into Wordpress Import XML file.
 
-# Install
+## Install
 
     npm install wxr
 
-# Usage
+## Usage
 
 ```js
 Importer = require('wxr')
@@ -68,3 +68,9 @@ Outputs:
     </channel>
 </rss>
 ```
+
+## License
+
+Copyright (c) 2015, Ilya Rusanen. (MIT License)
+
+See LICENSE for more info.
