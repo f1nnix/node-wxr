@@ -1,8 +1,8 @@
 # node-wxr
 
-![Docman GitHub issues](https://img.shields.io/github/issues/f1nnix/wxr.svg)
-![Docman GitHub forks](https://img.shields.io/github/forks/f1nnix/wxr.svg)
-![Docman GitHub stars](https://img.shields.io/github/stars/f1nnix/wxr.svg)
+![Docman GitHub issues](https://img.shields.io/github/issues/f1nnix/node-wxr.svg)
+![Docman GitHub forks](https://img.shields.io/github/forks/f1nnix/node-wxr.svg)
+![Docman GitHub stars](https://img.shields.io/github/stars/f1nnix/node-wxr.svg)
 ![Docman GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)
 
 XML (WXR) file generator for official [Wordpress Import Plugin](https://wordpress.org/plugins/wordpress-importer/). Add categories and posts in clean readable way, and then serialize it into Wordpress Import XML file.
