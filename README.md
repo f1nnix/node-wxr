@@ -14,9 +14,9 @@ XML (WXR) file generator for official [Wordpress Import Plugin](https://wordpres
 ## Usage
 
 ```js
-Importer = require('wxr')
+var Importer = require('wxr')
 
-importer = new Importer()
+var importer = new Importer()
 
 importer.addCategory({
   id   : 1,
@@ -49,7 +49,7 @@ Outputs:
         </wp:category>
         <item>
             <title>Hello, world!</title>
-            <Default description for post/>
+            <description>Default description for post</description>
             <wp:post_id>18612</wp:post_id>
             <wp:post_date>Wed Jul 22 2015 15:05:08 GMT+0000 (UTC)</wp:post_date>
             <wp:status>publish</wp:status>
