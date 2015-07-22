@@ -1,5 +1,5 @@
 {
-  "name": "node-wxr",
+  "name": "wxr",
   "version": "0.0.1",
   "description": "WP Import WXR-file generator for Node.js",
   "main": "index.js",
