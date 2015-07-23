@@ -32,9 +32,10 @@ module.exports = class Importer
   addPost: (post)=>
     item = @channel.ele "item"
 
-    title       = item.ele "title", {}, if post.title then post.title else "Default title for post"
-    description = item.ele "description", if post.description then post.description else "Default description for post"
     id          = item.ele "wp:post_id", {}, if post.id then post.id else Math.floor Math.random() * 100000
+    title       = item.ele "title", {}, if post.title then post.title else "Default title for post"
+    name        = item.ele "wp:post_name", {}, if post.name then post.name else ""
+    description = item.ele "description", if post.description then post.description else "Default description for post"
     date        = item.ele "wp:post_date", {}, if post.date then new Date(post.date) else new Date()
     status      = item.ele "wp:status", {}, if post.status then post.status else "publish"
     parent      = item.ele "wp:post_parent", {}, 0
