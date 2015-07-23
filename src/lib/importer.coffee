@@ -53,6 +53,17 @@ module.exports = class Importer
     excerptEncoded      = item.ele "excerpt:encoded"
     excerptEncodedCDATA = excerptEncoded.dat if post.excerptEncoded then post.excerptEncoded else "This is the default excerpt for post. Please, provide your own."
 
+    # add categories to post
+    if post.categories?.length > 0
+      for category in post.categories
+        if category.slug and category.title
+          cat = item.ele "category",
+            domain  : "category"
+            nicename: category.slug
+
+          catCDATA = cat.dat category.title
+
+
   stringify: =>
     @xml.end
       pretty : true

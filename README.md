@@ -117,6 +117,9 @@ Adds new post for Importer object.
     * **author** *string*: post aurhor, username. Will be created during import or assigned to existing user. E.g. "admin"
     * **contentEncoded** *string*: post content HTML, e.g. `<p>Hey, this is my post\</p><p>BTW, cats are awesome!</p>`
     * **excerptEncoded** *string*: post excerpt, e.g. "Cool preview for my post. Check it out!"
+    * **categories** *array*: post catgories array, where each object is JSON object with:
+        * **slug** *string*: category slug. Used in URLS, e. g. "js-rocks"
+        * **title** *string*: category title, ex. "Everything about JS"
 
 #### Example
 
@@ -130,7 +133,13 @@ importer.addPost({
   status        : "publish",
   author        : "admin",
   contentEncoded: "<p>Hey, this is my post</p><p>BTW, cats are awesome!</p>",
-  excerptEncoded: "Cool preview for my post. Check it out!"
+  excerptEncoded: "Cool preview for my post. Check it out!",
+  categories    : [
+    {
+      title: "Everything about JS",
+      slug: "js-rocks"
+    }
+  ]
 })
 ```
 
