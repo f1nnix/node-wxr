@@ -1,5 +1,11 @@
 M = require "./mediator"
 
+normalizeDate = (dateString)->
+  date = new Date()
+  date = new Date(Date.parse(dateString)) if dateString
+  
+  "#{date.getFullYear()}-#{if date.getMonth()<10 then '0' + String(date.getMonth()) else date.getMonth()}-#{date.getDate()} #{date.getHours()}:#{date.getMinutes()}:#{date.getSeconds()}"
+
 module.exports = class Importer
   xml    : null
   channel: null
@@ -36,7 +42,7 @@ module.exports = class Importer
     title       = item.ele "title", {}, if post.title then post.title else "Default title for post"
     name        = item.ele "wp:post_name", {}, if post.name then post.name else ""
     description = item.ele "description", if post.description then post.description else "Default description for post"
-    date        = item.ele "wp:post_date", {}, if post.date then new Date(post.date) else new Date()
+    date        = item.ele "wp:post_date", {}, normalizeDate(post.date)
     status      = item.ele "wp:status", {}, if post.status then post.status else "publish"
     parent      = item.ele "wp:post_parent", {}, 0
     type        = item.ele "wp:post_type", {}, "post"
@@ -73,7 +79,7 @@ module.exports = class Importer
       id = item.ele "wp:post_id", {}, if options.id then options.id else Math.floor Math.random() * 100000
 
       # <wp:post_date>2015-03-05 16:21:00</wp:post_date>
-      date = item.ele "wp:post_date", {}, if options.date then new Date(options.date) else new Date()
+      date = item.ele "wp:post_date", {}, normalizeDate(options.date)
 
       # <title>Picture of a cat</title>
       title = item.ele "title", {}, if options.title then options.title else "Default title for attachment"
