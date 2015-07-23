@@ -64,6 +64,44 @@ module.exports = class Importer
           catCDATA = cat.dat category.title
 
 
+  addAttachment: (options)=>
+    # without attachmentURL it has no sense
+    if options.attachmentURL
+      item = @channel.ele "item"
+
+      # <wp:post_id>301</wp:post_id>
+      id = item.ele "wp:post_id", {}, if options.id then options.id else Math.floor Math.random() * 100000
+
+      # <wp:post_date>2015-03-05 16:21:00</wp:post_date>
+      date = item.ele "wp:post_date", {}, if options.date then new Date(options.date) else new Date()
+
+      # <title>Picture of a cat</title>
+      title = item.ele "title", {}, if options.title then options.title else "Default title for attachment"
+
+      # <dc:creator><![CDATA[admin]]></dc:creator>
+      creator      = item.ele "dc:creator"
+      creatorCDATA = creator.dat if options.author then options.author else "admin"
+
+      # <description></description>
+      description = item.ele "description", if options.description then options.description else ""
+
+      # <excerpt:encoded><![CDATA[This is a picture of a cat I found]]></excerpt:encoded>
+      excerptEncoded      = item.ele "excerpt:encoded"
+      excerptEncodedCDATA = excerptEncoded.dat if options.excerptEncoded then options.excerptEncoded else ""
+
+      # <wp:status>inherit</wp:status>
+      status = item.ele "wp:status", {}, if options.status then options.status else "inherit"
+
+      # <wp:post_parent>300</wp:post_parent>
+      parent = item.ele "wp:post_parent", {}, if options.parent then options.parent else 0
+
+      # <wp:post_type>attachment</wp:post_type>
+      type = item.ele "wp:post_type", {}, "attachment"
+
+      # <wp:attachment_url>https://upload.wikimedia.org/wikipedia/commons/f/fc/Minka.jpg</wp:attachment_url>
+      type = item.ele "wp:attachment_url", {}, if options.attachmentURL then options.attachmentURL else ""
+
+
   stringify: =>
     @xml.end
       pretty : true

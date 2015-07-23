@@ -15,11 +15,9 @@ XML (WXR) file generator for official [Wordpress Import Plugin](https://wordpres
 
 ```js
 var Importer = require('wxr')
-
 var importer = new Importer()
 
 importer.addCategory({
-  id   : 1,
   slug : "perfect-category",
   title: "Perfect Category"
 })
@@ -27,7 +25,25 @@ importer.addCategory({
 importer.addPost({
   title         : "Hello, world!",
   contentEncoded: "<p>Hey, this is my post</p><p>BTW, cats are awesome!</p>",
-  excerptEncoded: "Cool preview for my post. Check it out!"
+  excerptEncoded: "Cool preview for my post. Check it out!",
+  categories    : [
+    {
+      slug : "perfect-category",
+      title: "Perfect Category"
+    }
+  ]
+})
+
+importer.addAttachment({
+  id            : 15,
+  dat           : "2015-10-05 00:27:25",
+  title         : "Fig. 1. Cats and puppies",
+  author        : "admin",
+  description   : "Fig. 1. Cats and puppies",
+  excerptEncoded: "Fig. 1. Cats and puppies",
+  status        : "inherit",
+  parent        : 0,
+  attachmentURL : "https://upload.wikimedia.org/wikipedia/commons/f/fc/Minka.jpg"
 })
 
 console.log(importer.stringify());
@@ -41,17 +57,18 @@ Outputs:
     <channel>
         <wp:wxr_version>1.2</wp:wxr_version>
         <wp:category>
-            <wp:term_id>1</wp:term_id>
+            <wp:term_id>72583</wp:term_id>
             <wp:category_nicename>perfect-category</wp:category_nicename>
             <wp:cat_name>
                 <![CDATA[Perfect Category]]>
             </wp:cat_name>
         </wp:category>
         <item>
+            <wp:post_id>14455</wp:post_id>
             <title>Hello, world!</title>
+            <wp:post_name/>
             <description>Default description for post</description>
-            <wp:post_id>18612</wp:post_id>
-            <wp:post_date>Wed Jul 22 2015 15:05:08 GMT+0000 (UTC)</wp:post_date>
+            <wp:post_date>Thu Jul 23 2015 13:57:10 GMT+0000 (UTC)</wp:post_date>
             <wp:status>publish</wp:status>
             <wp:post_parent>0</wp:post_parent>
             <wp:post_type>post</wp:post_type>
@@ -64,6 +81,28 @@ Outputs:
             <excerpt:encoded>
                 <![CDATA[Cool preview for my post. Check it out!]]>
             </excerpt:encoded>
+            <category domain="category" nicename="perfect-category">
+                <![CDATA[Perfect Category]]>
+            </category>
+            <category domain="category" nicename="bad-category">
+                <![CDATA[Bad Category]]>
+            </category>
+        </item>
+        <item>
+            <wp:post_id>15</wp:post_id>
+            <wp:post_date>Thu Jul 23 2015 13:57:10 GMT+0000 (UTC)</wp:post_date>
+            <title>Fig. 1. Cats and puppies</title>
+            <dc:creator>
+                <![CDATA[admin]]>
+            </dc:creator>
+            <description>Fig. 1. Cats and puppies</description>
+            <excerpt:encoded>
+                <![CDATA[Fig. 1. Cats and puppies]]>
+            </excerpt:encoded>
+            <wp:status>inherit</wp:status>
+            <wp:post_parent>0</wp:post_parent>
+            <wp:post_type>attachment</wp:post_type>
+            <wp:attachment_url>https://upload.wikimedia.org/wikipedia/commons/f/fc/Minka.jpg</wp:attachment_url>
         </item>
     </channel>
 </rss>
@@ -140,6 +179,37 @@ importer.addPost({
       slug: "js-rocks"
     }
   ]
+})
+```
+
+### addAttachment(options)
+
+Adds new attachment (image) for Importer instance.
+
+* **options** *json*:
+    * **id** *integer*: attachment ID. If not provided, random ID will be generated. E.g. 15
+    * **date** *date string*: attachment date, e.g. "2015-10-05 00:27:25"
+    * **title** *string*: attachment caption, ex. "Fig. 1. Cats and puppies"
+    * **author** *string*: attachment author (username). Will be created during import or assigned to existing user. E.g. "admin"
+    * **description** *string*: attachment description, e.g. "Fig. 1. Cats and puppies"
+    * **excerptEncoded** *string*: attachment excerpt, e.g. "Fig. 1. Cats and puppies"
+    * **status** *string*: attachment status, e.g. "inherit"
+    * **parent** *integer*: parent post ID. If not provided, will be 0
+    * **attachmentURL** *string*: attachment URL, e.g. `https://upload.wikimedia.org/wikipedia/commons/f/fc/Minka.jpg`
+
+#### Example
+
+```js
+importer.addAttachment({
+  id            : 5,
+  dat           : "2015-10-05 00:27:25",
+  title         : "Fig. 1. Cats and puppies",
+  author        : "admin",
+  description   : "Fig. 1. Cats and puppies",
+  excerptEncoded: "Fig. 1. Cats and puppies",
+  status        : "inherit",
+  parent        : 0,
+  attachmentURL : "https://upload.wikimedia.org/wikipedia/commons/f/fc/Minka.jpg"
 })
 ```
 
