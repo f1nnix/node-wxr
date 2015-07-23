@@ -3,7 +3,7 @@ M = require "./mediator"
 normalizeDate = (dateString)->
   date = new Date()
   date = new Date(Date.parse(dateString)) if dateString
-  
+
   "#{date.getFullYear()}-#{if date.getMonth()<10 then '0' + String(date.getMonth()) else date.getMonth()}-#{date.getDate()} #{date.getHours()}:#{date.getMinutes()}:#{date.getSeconds()}"
 
 module.exports = class Importer
@@ -48,8 +48,7 @@ module.exports = class Importer
     type        = item.ele "wp:post_type", {}, "post"
 
     # author login, string
-    creator      = item.ele "dc:creator"
-    creatorCDATA = creator.dat if post.author then post.author else "admin"
+    creator      = item.ele "dc:creator", {}, if post.author then post.author else "admin"
 
     # content, HTML
     contentEncoded      = item.ele "content:encoded"
@@ -85,8 +84,7 @@ module.exports = class Importer
       title = item.ele "title", {}, if options.title then options.title else "Default title for attachment"
 
       # <dc:creator><![CDATA[admin]]></dc:creator>
-      creator      = item.ele "dc:creator"
-      creatorCDATA = creator.dat if options.author then options.author else "admin"
+      creator      = item.ele "dc:creator", {}, if options.author then options.author else "admin"
 
       # <description></description>
       description = item.ele "description", if options.description then options.description else ""
