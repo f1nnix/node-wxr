@@ -38,10 +38,12 @@ module.exports = class Importer
   addPost: (post)=>
     item = @channel.ele "item"
 
-    id          = item.ele "wp:post_id", {}, if post.id then post.id else Math.floor Math.random() * 100000
-    title       = item.ele "title", {}, if post.title then post.title else "Default title for post"
+    # force add only required nodes
+    # opional are missed if not specified
+    # id          = item.ele "wp:post_id", {}, if post.id then post.id else Math.floor Math.random() * 100000
+    title       = item.ele "title", {}, if post.title then post.title else ""
     name        = item.ele "wp:post_name", {}, if post.name then post.name else ""
-    description = item.ele "description", if post.description then post.description else "Default description for post"
+    description = item.ele "description", if post.description then post.description else ""
     date        = item.ele "wp:post_date", {}, normalizeDate(post.date)
     status      = item.ele "wp:status", {}, if post.status then post.status else "publish"
     parent      = item.ele "wp:post_parent", {}, 0
@@ -51,12 +53,12 @@ module.exports = class Importer
     creator      = item.ele "dc:creator", {}, if post.author then post.author else "admin"
 
     # content, HTML
-    contentEncoded      = item.ele "content:encoded"
-    contentEncodedCDATA = contentEncoded.dat if post.contentEncoded then post.contentEncoded else "<h1>Hello, world!<h1><p>This is the default content for post. Please, provide your own.</p>"
+    contentEncoded      = item.ele "content:encoded" #, {}, if post.contentEncoded then post.contentEncoded else ""
+    contentEncodedCDATA = contentEncoded.dat if post.contentEncoded then post.contentEncoded else ""
 
     # excerpt, HTML
-    excerptEncoded      = item.ele "excerpt:encoded"
-    excerptEncodedCDATA = excerptEncoded.dat if post.excerptEncoded then post.excerptEncoded else "This is the default excerpt for post. Please, provide your own."
+    excerptEncoded      = item.ele "excerpt:encoded" #, {}, if post.contentEncoded then post.contentEncoded else ""
+    excerptEncodedCDATA = excerptEncoded.dat if post.excerptEncoded then post.excerptEncoded else ""
 
     # add categories to post
     if post.categories?.length > 0
@@ -75,7 +77,7 @@ module.exports = class Importer
       item = @channel.ele "item"
 
       # <wp:post_id>301</wp:post_id>
-      id = item.ele "wp:post_id", {}, if options.id then options.id else Math.floor Math.random() * 100000
+      # id = item.ele "wp:post_id", {}, if options.id then options.id else Math.floor Math.random() * 100000
 
       # <wp:post_date>2015-03-05 16:21:00</wp:post_date>
       date = item.ele "wp:post_date", {}, normalizeDate(options.date)
