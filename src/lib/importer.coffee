@@ -4,7 +4,7 @@ normalizeDate = (dateString)->
   date = new Date()
   date = new Date(Date.parse(dateString)) if dateString
 
-  "#{date.getFullYear()}-#{if date.getMonth()<10 then '0' + String(date.getMonth()) else date.getMonth()}-#{date.getDate()} #{date.getHours()}:#{date.getMinutes()}:#{date.getSeconds()}"
+  "#{date.getFullYear()}-#{if date.getMonth()<9 then '0' + String(date.getMonth()+1) else date.getMonth()+1}-#{date.getDate()} #{date.getHours()}:#{date.getMinutes()}:#{date.getSeconds()}"
 
 module.exports = class Importer
   xml    : null
