@@ -36,7 +36,7 @@ importer.addPost({
 
 importer.addAttachment({
   id            : 15,
-  dat           : "2015-10-05 00:27:25",
+  date          : "2015-10-05 00:27:25",
   title         : "Fig. 1. Cats and puppies",
   author        : "admin",
   description   : "Fig. 1. Cats and puppies",
