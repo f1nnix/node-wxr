@@ -70,6 +70,15 @@ module.exports = class Importer
 
           catCDATA = cat.dat category.title
 
+    # add tags to post
+    if post.tags?.length > 0
+      for tag in post.tags
+        if tag.slug and tag.title
+          tg = item.ele "category",
+            domain  : "tag"
+            nicename: tag.slug
+
+          tagCDATA = tg.dat tag.title
 
   addAttachment: (options)=>
     # without attachmentURL it has no sense
