@@ -5,7 +5,7 @@
 ![Docman GitHub stars](https://img.shields.io/github/stars/f1nnix/node-wxr.svg)
 ![Docman GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)
 
-XML (WXR) file generator for official [Wordpress Import Plugin](https://wordpress.org/plugins/wordpress-importer/). Add categories and posts in clean readable way, and then serialize it into Wordpress Import XML file.
+XML (WXR) file generator for official [WordPress Import Plugin](https://wordpress.org/plugins/wordpress-importer/). Add categories and posts in clean readable way, and then serialize it into WordPress Import XML file.
 
 ## Install
 
@@ -215,7 +215,7 @@ importer.addAttachment({
 
 ### stringify()
 
-Generates result XML (WXR) string for importing to Wordpress.
+Generates result XML (WXR) string for importing to WordPress.
 
 #### Example
 
