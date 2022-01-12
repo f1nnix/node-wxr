@@ -31,6 +31,9 @@ importer.addPost({
       slug : "perfect-category",
       title: "Perfect Category"
     }
+  ],
+  meta: [
+    ['key', 'value']
   ]
 })
 
