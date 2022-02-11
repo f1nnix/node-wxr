@@ -31,6 +31,9 @@ importer.addPost({
       slug : "perfect-category",
       title: "Perfect Category"
     }
+  ],
+  meta: [
+    ['key', 'value']
   ]
 })
 
@@ -213,9 +216,19 @@ importer.addAttachment({
 })
 ```
 
-### stringify()
+### stringify(\[options\])
 
 Generates result XML (WXR) string for importing to WordPress.
+
+#### Default Options
+
+```json
+{
+    "pretty": true,
+    "indent": "    ",
+    "newline": "\n"
+}
+```
 
 #### Example
 
@@ -225,6 +238,7 @@ var importer = new Importer();
 // importer.addPost(...)
 
 var xmlString = importer.stringify();
+
 require("fs").writeFile("export.xml", xmlString, function(err) {
   if (err) {
     console.log(err);
